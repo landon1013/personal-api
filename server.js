@@ -7,7 +7,7 @@ app.use(bodyParser.json());
 var me = {
     name: "Landon Call",
     location: "Highland",
-    hobbies: "Coding, Photography",
+    hobbies: hobbies = ["Coding, Photography, Art"],
     occupation: "Coding",
     latest: "Simply Coding"
 };
@@ -37,7 +37,17 @@ app.put('/api/code/location', function(req, res) {
 });
 
 app.get('/api/code/hobbies', function(req, res) {
-    res.status(200).send(JSON.stringify(me.hobbies));
+    res.status(200).send(JSON.stringify(hobbies.reverse()));
+});
+
+app.get('/api/code/hobbies/:order', function(req, res, order) {
+    if (order === "desc") {
+        hobbies.sort();
+    }
+
+    else if (order === "desc") {
+        hobbies.reverse();
+    }
 });
 
 app.get('/api/code/occupation', function(req, res) {
